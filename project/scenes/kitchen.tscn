@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://exports/METAL.png" type="Texture" id=2]
@@ -576,6 +576,15 @@ func _process(delta):
 	rotate_y(speed * delta)
 "
 
+[sub_resource type="GDScript" id=50]
+script/source = "extends ColorRect
+
+func _input(_event):
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		self.visible = false
+	else:
+		self.visible = true"
+
 [sub_resource type="GDScript" id=49]
 script/source = "extends TextureProgress
 
@@ -612,7 +621,7 @@ shape = SubResource( 2 )
 
 [node name="parede" type="MeshInstance" parent="level"]
 editor/display_folded = true
-transform = Transform( 3.37175e-07, 0.0771366, 0, -7.71366, 3.37175e-09, 0, 0, 0, -7.71366, -5.59193, -0.0635794, 0.0338339 )
+transform = Transform( 3.37175e-007, 0.0771366, 0, -7.71366, 3.37175e-009, 0, 0, 0, -7.71366, -5.59193, -0.0635794, 0.0338339 )
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -623,7 +632,7 @@ shape = SubResource( 2 )
 
 [node name="parede2" type="MeshInstance" parent="level"]
 editor/display_folded = true
-transform = Transform( -1.47384e-14, -3.37175e-09, -7.71366, -7.71366, 3.37175e-09, 0, -3.37175e-07, -0.0771366, 3.37175e-07, -0.020936, -0.0635794, 4.95199 )
+transform = Transform( -1.47384e-014, -3.37175e-009, -7.71366, -7.71366, 3.37175e-009, 0, -3.37175e-007, -0.0771366, 3.37175e-007, -0.020936, -0.0635794, 4.95199 )
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -634,7 +643,7 @@ shape = SubResource( 2 )
 
 [node name="parede3" type="MeshInstance" parent="level"]
 editor/display_folded = true
-transform = Transform( -3.37175e-07, -0.0771366, 6.7435e-07, -7.71366, 3.37175e-09, 0, 2.94768e-14, 6.7435e-09, 7.71366, 5.32209, -0.0635794, 0.91729 )
+transform = Transform( -3.37175e-007, -0.0771366, 6.7435e-007, -7.71366, 3.37175e-009, 0, 2.94768e-014, 6.7435e-009, 7.71366, 5.32209, -0.0635794, 0.91729 )
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -645,7 +654,7 @@ shape = SubResource( 2 )
 
 [node name="parede4" type="MeshInstance" parent="level"]
 editor/display_folded = true
-transform = Transform( 4.42151e-14, 1.01152e-08, 7.71366, -7.71366, 3.37175e-09, 0, 3.37175e-07, 0.0771366, -1.01152e-06, -0.539763, -0.0635794, -6.09763 )
+transform = Transform( 4.42151e-014, 1.01152e-008, 7.71366, -7.71366, 3.37175e-009, 0, 3.37175e-007, 0.0771366, -1.01152e-006, -0.539763, -0.0635794, -6.09763 )
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -685,7 +694,7 @@ shape = SubResource( 10 )
 
 [node name="balcao001" type="MeshInstance" parent="level/abre aqui"]
 editor/display_folded = true
-transform = Transform( -1.02464, 0, 3.33869e-07, 0, 1.02464, 0, 3.33869e-07, 0, 1.02464, 4.2134, 0.896697, 2.60127 )
+transform = Transform( -1.02464, 0, 3.33869e-007, 0, 1.02464, 0, 3.33869e-007, 0, 1.02464, 4.2134, 0.896697, 2.60127 )
 mesh = SubResource( 12 )
 material/0 = null
 
@@ -808,7 +817,7 @@ transform = Transform( 4.65219, 0, 0, 0, 4.65219, 0, 0, 0, 4.65219, -5.21257, 3.
 editor/display_folded = true
 
 [node name="geladeira" type="MeshInstance" parent="level/to summit"]
-transform = Transform( 2.29195, 0, 6.09578e-07, 0, 4.59276, 0, 7.46813e-07, 0, -1.87078, 2.40637, 2.23989, -4.9387 )
+transform = Transform( 2.29195, 0, 6.09578e-007, 0, 4.59276, 0, 7.46813e-007, 0, -1.87078, 2.40637, 2.23989, -4.9387 )
 mesh = SubResource( 34 )
 material/0 = null
 
@@ -818,7 +827,7 @@ material/0 = null
 shape = SubResource( 35 )
 
 [node name="filtro" type="MeshInstance" parent="level/to summit"]
-transform = Transform( -3.93671e-08, 0, 0.900614, 0, 0.900614, 0, 0.900614, 0, 3.93671e-08, 0.498804, 3.73412, -4.95439 )
+transform = Transform( -3.93671e-008, 0, 0.900614, 0, 0.900614, 0, 0.900614, 0, 3.93671e-008, 0.498804, 3.73412, -4.95439 )
 mesh = SubResource( 37 )
 material/0 = null
 
@@ -828,7 +837,7 @@ material/0 = null
 shape = SubResource( 38 )
 
 [node name="balcao" type="MeshInstance" parent="level/to summit"]
-transform = Transform( -4.47883e-08, 0, 1.02464, 0, 1.02464, 0, 1.02464, 0, 4.47883e-08, 0.12208, 1.01476, -4.92892 )
+transform = Transform( -4.47883e-008, 0, 1.02464, 0, 1.02464, 0, 1.02464, 0, 4.47883e-008, 0.12208, 1.01476, -4.92892 )
 mesh = SubResource( 40 )
 material/0 = null
 
@@ -838,7 +847,7 @@ material/0 = null
 shape = SubResource( 41 )
 
 [node name="balcao002" type="MeshInstance" parent="level/to summit"]
-transform = Transform( -4.47883e-08, 0, 1.02464, 0, 1.02464, 0, 1.02464, 0, 4.47883e-08, -1.94174, 1.01476, -4.92892 )
+transform = Transform( -4.47883e-008, 0, 1.02464, 0, 1.02464, 0, 1.02464, 0, 4.47883e-008, -1.94174, 1.01476, -4.92892 )
 mesh = SubResource( 43 )
 material/0 = null
 __meta__ = {
@@ -851,7 +860,7 @@ __meta__ = {
 shape = SubResource( 44 )
 
 [node name="microwave" type="MeshInstance" parent="level/to summit"]
-transform = Transform( -2.14122e-08, 0, 0.875065, 0, 0.489855, 0, 0.489855, 0, 3.82503e-08, -1.16205, 2.60038, -4.92674 )
+transform = Transform( -2.14122e-008, 0, 0.875065, 0, 0.489855, 0, 0.489855, 0, 3.82503e-008, -1.16205, 2.60038, -4.92674 )
 mesh = SubResource( 46 )
 material/0 = null
 
@@ -885,6 +894,7 @@ script = ExtResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.329412 )
+script = SubResource( 50 )
 
 [node name="xxx" type="TextureRect" parent="menu"]
 margin_left = 761.417
@@ -933,10 +943,12 @@ text = "JOGAR"
 repeat = true
 playback/repeat = true
 
-[node name="UI" type="CanvasLayer" parent="."]
-editor/display_folded = true
+[node name="UI" type="CanvasLayer" parent="." groups=[
+"ui",
+]]
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
+visible = false
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 382.0
@@ -948,7 +960,6 @@ size_flags_vertical = 5
 [node name="TextureProgress" type="TextureProgress" parent="UI/MarginContainer" groups=[
 "ui",
 ]]
-visible = false
 margin_right = 352.0
 margin_bottom = 66.0
 size_flags_horizontal = 5
