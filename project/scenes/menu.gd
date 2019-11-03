@@ -19,9 +19,7 @@ func on_button_pressed():
 	for child in get_children():
 		if child is CanvasItem:
 			child.visible = false
-	for child in get_tree().get_nodes_in_group("ui")[0].get_children():
-		if child is CanvasItem:
-			child.visible = true
+	get_tree().get_nodes_in_group("ui")[0].get_parent().visible = true
 
 var q1 = false
 var q2 = false
