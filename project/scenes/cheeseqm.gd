@@ -17,4 +17,5 @@ func _on_player_entered(body):
 		var ui = get_tree().get_nodes_in_group("ui")[0]
 		ui.value += 1
 		if ui.value == ui.max_value:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			get_tree().change_scene("res://scenes/victory.tscn")

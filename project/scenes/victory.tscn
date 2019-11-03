@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://titles/f1.png" type="Texture" id=1]
-[ext_resource path="res://titles/f2.png" type="Texture" id=2]
-[ext_resource path="res://titles/f3.png" type="Texture" id=3]
-[ext_resource path="res://titles/f4.png" type="Texture" id=4]
-[ext_resource path="res://titles/home.png" type="Texture" id=5]
-[ext_resource path="res://titles/replay.png" type="Texture" id=6]
+[ext_resource path="res://titles/home.png" type="Texture" id=1]
+[ext_resource path="res://titles/replay.png" type="Texture" id=2]
+[ext_resource path="res://titles/f1.png" type="Texture" id=3]
+[ext_resource path="res://titles/f2.png" type="Texture" id=4]
+[ext_resource path="res://titles/f3.png" type="Texture" id=5]
+[ext_resource path="res://titles/f4.png" type="Texture" id=6]
 [ext_resource path="res://titles/victory.png" type="Texture" id=7]
 [ext_resource path="res://titles/x2.1.png" type="Texture" id=8]
 [ext_resource path="res://titles/x2.2.png" type="Texture" id=9]
@@ -19,10 +19,10 @@ func _ready():
 	$Tween.connect(\"tween_completed\", self, \"tween_ended\")
 	$Tween.interpolate_property($x21, \"scale\",
 			$x21.scale, ($x21.scale*cheese_scale_factor),
-			5.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+			1.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$Tween.interpolate_property($x22, \"scale\",
 			$x21.scale, ($x21.scale*cheese_scale_factor),
-			2.7, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.4)
+			1.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.4)
 	$Tween.start()
 
 var q1 = false
@@ -33,29 +33,67 @@ func tween_ended(obj, _key):
 			if q1:
 				$Tween.interpolate_property($x21, \"scale\",
 						$x21.scale, ($x21.scale*cheese_scale_factor),
-						5.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+						1.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 				q1 = !q1
 			else:
 				$Tween.interpolate_property($x21, \"scale\",
 						$x21.scale, ($x21.scale*(1/cheese_scale_factor)),
-						5.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+						1.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 				q1 = !q1
 		\"x22\":
 			if q2:
 				$Tween.interpolate_property($x22, \"scale\",
 						$x22.scale, ($x22.scale*cheese_scale_factor),
-						5.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+						1.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 				q2 = !q2
 			else:
 				$Tween.interpolate_property($x22, \"scale\",
 						$x22.scale, ($x22.scale*(1/cheese_scale_factor)),
-						5.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+						1.0, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 				q2 = !q2
-	$Tween.start()"
+	$Tween.start()
+
+func _on_home_pressed():
+	get_tree().quit()
+
+func _on_replay_pressed():
+	get_tree().change_scene(\"res://scenes/kitchen.tscn\")"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends TextureButton
+
+func _ready():
+	connect(\"mouse_entered\", self, \"on_mouse_entered\")
+	connect(\"mouse_exited\", self, \"on_mouse_exited\")
+
+func on_mouse_entered():
+	var sizechange = 1.2
+	self.rect_position -= (rect_size*sizechange - rect_size) / 2
+	self.rect_scale *= sizechange
+
+func on_mouse_exited():
+	self.rect_position += (rect_size - rect_size*(1/rect_scale.x)) / 2
+	self.rect_scale *= (1/rect_scale.x)"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends TextureButton
+
+func _ready():
+	connect(\"mouse_entered\", self, \"on_mouse_entered\")
+	connect(\"mouse_exited\", self, \"on_mouse_exited\")
+
+func on_mouse_entered():
+	var sizechange = 1.2
+	self.rect_position -= (rect_size*sizechange - rect_size) / 2
+	self.rect_scale *= sizechange
+
+func on_mouse_exited():
+	self.rect_position += (rect_size - rect_size*(1/rect_scale.x)) / 2
+	self.rect_scale *= (1/rect_scale.x)"
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 3.0
@@ -64,21 +102,40 @@ animations = [ {
 [node name="Node2D" type="Node2D"]
 script = SubResource( 1 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = -6.0
+margin_right = 1031.0
+margin_bottom = 613.0
+color = Color( 0.403922, 0.372549, 0.341176, 1 )
+
+[node name="home" type="TextureButton" parent="."]
+margin_left = 552.741
+margin_top = 479.711
+margin_right = 635.741
+margin_bottom = 550.711
+texture_normal = ExtResource( 1 )
+script = SubResource( 3 )
+
+[node name="replay" type="TextureButton" parent="."]
+margin_left = 396.657
+margin_top = 473.983
+margin_right = 477.657
+margin_bottom = 548.983
+texture_normal = ExtResource( 2 )
+script = SubResource( 4 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 501.517, 328.832 )
+position = Vector2( 518.701, 344.584 )
 scale = Vector2( 0.675014, 0.675014 )
 frames = SubResource( 2 )
-
-[node name="home" type="Sprite" parent="AnimatedSprite"]
-position = Vector2( 129.763, 255.26 )
-texture = ExtResource( 5 )
-
-[node name="replay" type="Sprite" parent="AnimatedSprite"]
-position = Vector2( -144.461, 257.12 )
-texture = ExtResource( 6 )
+frame = 1
+playing = true
 
 [node name="victory" type="Sprite" parent="."]
-position = Vector2( 610.799, 159.997 )
+position = Vector2( 640.871, 138.517 )
 texture = ExtResource( 7 )
 
 [node name="x21" type="Sprite" parent="."]
@@ -90,3 +147,5 @@ position = Vector2( 206.204, 310.738 )
 texture = ExtResource( 9 )
 
 [node name="Tween" type="Tween" parent="."]
+[connection signal="pressed" from="home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="replay" to="." method="_on_replay_pressed"]

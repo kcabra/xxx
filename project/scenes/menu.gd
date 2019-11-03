@@ -13,7 +13,6 @@ func _ready():
 
 
 func on_button_pressed():
-	print_debug("DEBUG: menu button pressed!")
 	get_tree().get_nodes_in_group("camera")[0].get_children()[0].get_children()[0].current = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	for child in get_children():
